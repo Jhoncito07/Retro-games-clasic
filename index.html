@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade Clásico - Colección de Minijuegos</title>
+  <link rel="stylesheet" href="./style/estilo.css">
+</head>
+
+<body>
+  <header>
+    <h1>Arcade Clásico</h1>
+    <p>Tu colección de minijuegos clásicos para pasar el rato</p>
+  </header>
+
+  <nav>
+    <a href="#home">Inicio</a>
+    <a href="#games">Juegos</a>
+    <a href="#about">Acerca de</a>
+  </nav>
+
+  <main id="home">
+    <section id="games">
+      <h2 class="section-title">Nuestros Juegos</h2>
+      <div class="games-grid">
+        <!-- Snake -->
+        <div class="game-card">
+          <div class="game-image">🐍</div>
+          <div class="game-content">
+            <h3 class="game-title">Snake (La Culebrita)</h3>
+            <p class="game-description">El clásico juego de la serpiente. Come las manzanas y crece sin chocar contra ti
+              mismo o las paredes.</p>
+            <a href="#" class="play-button" onclick="openGame('snake')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Tic Tac Toe -->
+        <div class="game-card">
+          <div class="game-image">⭕❌</div>
+          <div class="game-content">
+            <h3 class="game-title">Tic Tac Toe (3 en Raya)</h3>
+            <p class="game-description">El juego de estrategia clásico. Consigue tres en línea antes de que tu oponente.
+            </p>
+            <a href="#" class="play-button" onclick="openGame('tictactoe')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Tetris -->
+        <div class="game-card">
+          <div class="game-image">🧩</div>
+          <div class="game-content">
+            <h3 class="game-title">Tetris</h3>
+            <p class="game-description">Ordena las piezas que caen para completar líneas. ¡No dejes que la pantalla se
+              llene!</p>
+            <a href="#" class="play-button" onclick="openGame('tetris')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Breakout -->
+        <div class="game-card">
+          <div class="game-image">🧱</div>
+          <div class="game-content">
+            <h3 class="game-title">Breakout</h3>
+            <p class="game-description">Rompe todos los ladrillos con la bolita sin dejar que caiga al vacío.</p>
+            <a href="#" class="play-button" onclick="openGame('breakout')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Hangman -->
+        <div class="game-card">
+          <div class="game-image">👨‍🦯</div>
+          <div class="game-content">
+            <h3 class="game-title">Hangman (El Ahorcado)</h3>
+            <p class="game-description">Adivina la palabra antes de que se complete el dibujo del ahorcado.</p>
+            <a href="#" class="play-button" onclick="openGame('hangman')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Memory -->
+        <div class="game-card">
+          <div class="game-image">🎴</div>
+          <div class="game-content">
+            <h3 class="game-title">Memory (Memoria)</h3>
+            <p class="game-description">Encuentra todas las parejas de cartas. Pon a prueba tu memoria.</p>
+            <a href="#" class="play-button" onclick="openGame('memory')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Buscaminas -->
+        <div class="game-card">
+          <div class="game-image">💣</div>
+          <div class="game-content">
+            <h3 class="game-title">Buscaminas</h3>
+            <p class="game-description">Encuentra todas las minas sin hacer clic en ellas. ¡Usa banderas para marcarlas!
+            </p>
+            <a href="#" class="play-button" onclick="openGame('minesweeper')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Sudoku -->
+        <div class="game-card">
+          <div class="game-image">🧩</div>
+          <div class="game-content">
+            <h3 class="game-title">Sudoku</h3>
+            <p class="game-description">
+              Completa el tablero con números del 1 al 9 sin repetir en filas, columnas o subcuadrículas.
+              ¡Pon a prueba tu lógica!
+            </p>
+            <a href="#" class="play-button" onclick="openGame('sudoku')">Jugar</a>
+          </div>
+        </div>
+
+        <!-- Pac-Man -->
+        <div class="game-card">
+          <div class="game-image">👻</div>
+          <div class="game-content">
+            <h3 class="game-title">Pac-Man</h3>
+            <p class="game-description">
+              Come todos los puntos del laberinto mientras evitas a los fantasmas. ¡Cuidado con los fantasmas!
+            </p>
+            <a href="#" class="play-button" onclick="openGame('pacman')">Jugar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top: 3rem;">
+      <h2 class="section-title">Acerca de Arcade Clásico</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+        Arcade Clásico es una colección de juegos retro que te traen la nostalgia de las salas de arcade y
+        los primeros videojuegos. Todos nuestros juegos están optimizados para dispositivos móviles y ordenadores.
+        ¡Diviértete y comparte tu puntuación con amigos!
+      </p>
+    </section>
+  </main>
+
+  <!-- Contenedor del juego Snake -->
+  <div class="game-container" id="snake-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Snake (La Culebrita)</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <canvas id="snake-game-canvas" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Tres en Raya -->
+  <div class="game-container" id="tictactoe-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Tres en Raya</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div class="tictactoe-board" id="tictactoe-board"></div>
+          <div class="tictactoe-status" id="tictactoe-status">Turno de: X</div>
+          <button class="tictactoe-reset" onclick="initTicTacToe()">Reiniciar</button>
+          <button id="tictactoe-mode" style="margin-top: 1rem;">Modo: Humano vs Humano</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Tetris -->
+  <div class="game-container" id="tetris-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Tetris</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <canvas id="tetris-canvas" width="300" height="600"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Breakout -->
+  <div class="game-container" id="breakout-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Breakout</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <canvas id="breakout-canvas" width="400" height="500"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Hangman -->
+  <div class="game-container" id="hangman-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Hangman (El Ahorcado)</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <div class="hangman-container">
+          <div id="hangman-drawing"
+            style="font-family: monospace; white-space: pre; text-align: center; font-size: 16px; margin-bottom: 20px;">
+          </div>
+          <div id="hangman-word" style="text-align: center; margin: 15px 0; font-size: 24px; letter-spacing: 5px;">
+          </div>
+          <div id="hangman-message" style="text-align: center; margin: 15px 0; font-weight: bold;"></div>
+          <div id="hangman-letters" style="text-align: center; margin: 20px 0;"></div>
+          <div style="text-align: center;">
+            <button id="hangman-reset" style="display: none; margin: 0 auto; padding: 8px 16px;">Jugar de nuevo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Memory -->
+  <div class="game-container" id="memory-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Memory (Memoria)</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div id="memory-stats" style="margin-bottom: 1rem;">Movimientos: 0 | Parejas: 0/8</div>
+          <div class="memory-board" id="memory-board"></div>
+          <button class="tictactoe-reset" style="margin-top: 1rem;" onclick="initMemory()">Reiniciar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Buscaminas -->
+  <div class="game-container" id="minesweeper-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Buscaminas</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <div class="minesweeper-container">
+          <div class="minesweeper-stats">
+            Minas restantes: <span id="mines-count">10</span>
+          </div>
+          <div class="minesweeper-grid" id="minesweeper-grid"></div>
+          <button class="tictactoe-reset" style="margin-top: 1rem;" onclick="initMinesweeper()">Reiniciar Juego</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Sudoku -->
+  <div class="game-container" id="sudoku-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Sudoku</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <div class="sudoku-container">
+          <div class="sudoku-grid" id="sudoku-grid"></div>
+          <div class="sudoku-controls">
+            <button onclick="generateSudoku('easy')">Fácil</button>
+            <button onclick="generateSudoku('medium')">Medio</button>
+            <button onclick="generateSudoku('hard')">Difícil</button>
+            <button onclick="checkSolution()">Verificar Solución</button>
+            <button onclick="getHint()">Obtener Pista</button>
+          </div>
+          <div class="sudoku-status" id="sudoku-status"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor del juego Pac-Man -->
+  <div class="game-container" id="pacman-container">
+    <div class="game-frame">
+      <div class="game-header">
+        <h3>Pac-Man</h3>
+        <button class="close-button" onclick="closeGame()">×</button>
+      </div>
+      <div class="game-area">
+        <div class="pacman-container">
+          <canvas id="pacman-canvas" width="600" height="400"></canvas>
+          <div class="pacman-stats">
+            <span>Puntuación: <span id="pacman-score">0</span></span>
+            <span>Vidas: <span id="pacman-lives">3</span></span>
+            <span>Nivel: <span id="pacman-level">1</span></span>
+          </div>
+          <button class="tictactoe-reset" onclick="initPacMan()">Reiniciar Juego</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/funcionalidades.js"></script>
+
+  <footer>
+    <p>© 2025 Desarrollado por Haize_07x - Todos los derechos reservados</p>
+  </footer>
+</body>
